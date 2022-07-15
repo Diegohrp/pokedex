@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Rubik:wght@300;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./src/styles.css" />
+    <title>Poxedex</title>
+  </head>
+  <body>
+    <main>
+      <section class="pokemon-section" id="pokemon-details">
+        <article class="pokemon">
+          <div class="pokemon__info">
+            <button class="pokemon-section__back">
+              <i class="fa-solid fa-arrow-left"></i>
+            </button>
+            <img
+              src="./assets/pokeball.svg"
+              alt="pokeball"
+              class="pokemon__pokeball"
+            />
+
+            <h1 class="pokemon__id">#001</h1>
+            <img
+              src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
+              alt="Pokemon Image"
+            />
+            <div class="pokemon__name">
+              <button class="pokemon__next-img-btn left">
+                <i class="fa-solid fa-arrow-left"></i>
+              </button>
+              <h1>Bulbasur</h1>
+              <button class="pokemon__next-img-btn right">
+                <i class="fa-solid fa-arrow-right"></i>
+              </button>
+            </div>
+            <span>Grass</span>
+            <span>Poison</span>
+          </div>
+          <div class="pokemon__info--specific">
+            <div class="pokemon__about">
+              <h2>About</h2>
+              <p>
+                A strange seed was planted on its back at birth.,the
+                plant sprouts and grows with this pokémon.
+              </p>
+              <div>
+                <span>Height</span>
+                <span>Weight</span>
+                <span>0.7m</span>
+                <span>6.9Kg</span>
+              </div>
+            </div>
+            <div class="pokemon__stats">
+              <h2>Basic Stats</h2>
+              <div class="pokemon__stat">
+                <span>HP</span>
+                <span>45</span>
+                <div class="pokemon__stat-bar"><div></div></div>
+              </div>
+              <div class="pokemon__stat">
+                <span>ATK</span>
+                <span>49</span>
+                <div class="pokemon__stat-bar"><div></div></div>
+              </div>
+              <div class="pokemon__stat">
+                <span>DEF</span>
+                <span>49</span>
+                <div class="pokemon__stat-bar"><div></div></div>
+              </div>
+              <div class="pokemon__stat">
+                <span>SP. ATK</span>
+                <span>65</span>
+                <div class="pokemon__stat-bar"><div></div></div>
+              </div>
+              <div class="pokemon__stat">
+                <span>SP. DEF</span>
+                <span>65</span>
+                <div class="pokemon__stat-bar"><div></div></div>
+              </div>
+              <div class="pokemon__stat">
+                <span>SPEED</span>
+                <span>65</span>
+                <div class="pokemon__stat-bar"><div></div></div>
+              </div>
+            </div>
+            <nav class="pokemon__nav">
+              <button>Previous</button>
+              <button>Next</button>
+            </nav>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+  <script src="./src/main.js"></script>
+  <script
+    src="https://kit.fontawesome.com/af0bf7190a.js"
+    crossorigin="anonymous"
+  ></script>
+</html>
