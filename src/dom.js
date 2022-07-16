@@ -281,3 +281,36 @@ function createPokemonCard(name, types, img, id) {
   typesDiv.appendChild(button);
   return container;
 }
+function closeDetails() {
+  pokemonDetails.innerHTML = '';
+  pokemonDetails.style.display = 'none';
+  pokeList.style.display = 'grid';
+  navList.style.display = 'flex';
+}
+
+function closeModal() {
+  const main = document.querySelector('main');
+  const modal = document.querySelector('#modal');
+  main.removeChild(modal);
+}
+
+function notFound() {
+  const main = document.querySelector('main');
+  const modal = document.createElement('section');
+  const article = document.createElement('article');
+  const h2 = document.createElement('h2');
+  const p = document.createElement('p');
+  const button = document.createElement('button');
+
+  modal.className = 'modal';
+  modal.id = 'modal';
+  h2.innerText = '404: Not found';
+  p.innerText = "We're sorry, try with another id or name.";
+  button.innerText = 'OK';
+  button.addEventListener('click', closeModal);
+  article.appendChild(h2);
+  article.appendChild(p);
+  article.appendChild(button);
+  modal.append(article);
+  main.appendChild(modal);
+}

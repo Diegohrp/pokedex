@@ -41,8 +41,7 @@ function printCurrentPokemon(query) {
       });
     })
     .catch((error) => {
-      /* notFound(); */
-      console.table(error);
+      notFound();
     });
 }
 function nextImg(n) {
@@ -91,18 +90,11 @@ function fetchPokemons(n) {
     });
 }
 
-function closeDetails() {
-  pokemonDetails.innerHTML = '';
-  pokemonDetails.style.display = 'none';
-  pokeList.style.display = 'grid';
-  navList.style.display = 'flex';
-}
-
 function handleSearch(event) {
   event.preventDefault();
   const search = document.getElementById('search');
   const query = search.value;
-  printCurrentPokemon(query);
+  printCurrentPokemon(query.toLowerCase());
 }
 
 form.addEventListener('submit', handleSearch);

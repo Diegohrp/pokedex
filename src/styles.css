@@ -505,6 +505,30 @@ footer{
   background-color: var(--fire-aura);
 }
 
+footer{
+  font-size: 1.6rem;
+  color: var(--light-text-color);
+}
+footer ul{
+  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+footer ul li{
+  display: flex;
+}
+
+footer ul li a{
+  color: var(--fire);
+  margin: 0 5px;
+  text-decoration: none;
+}
+
 /* Tablet */
 @media (min-height:1000px){
   .pokemon-section{
