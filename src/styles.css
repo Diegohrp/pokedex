@@ -2,12 +2,77 @@
   --text-font:'Montserrat', sans-serif;
   --titles-font:'Rubik', sans-serif;
   /*Colors depending on the pokemon type*/
+  --bug: #3ca151;
+  --dark-bug: #1f4d27;
+  --bug-aura: #b7ffc3;
+
+  --dark: #5b597e;
+  --dark-dark: #000203;
+  --dark-aura: #ba75ff;
+
+  --dragon: #63d5e9;
+  --dark-dragon: #45919e;
+  --dragon-aura:#00ffdd;
+  
+  --electric:#f1c748 ;
+  --dark-electric: #ddb94b;
+  --electric-aura: #ffecb1;
+
+  --fairy: #f91069;
+  --dark-fairy: #a01743;
+  --fairy-aura: #ffc1d9;
+
+  --fighting: #f96736;
+  --dark-fighting: #a34128;
+  --fighting-aura: #ffbba4;
+
+  --fire: #fd4b5b;
+  --dark-fire: #bb1b1e;
+  --fire-aura: #ff8c00;
+
+  --flying: #9bb9d3;
+  --dark-flying: #4c6c81;
+  --flying-aura: #794cff;
+
+  --ghost: #936896;
+  --dark-ghost: #32326f;
+  --ghost-aura: #ff00ff;
+
+  --ground: #b0742c;
+  --dark-ground: #6e4d20;
+  --ground-aura: #e98007;
+
+  --ice: #86d8fe;
+  --dark-ice: #2fbdff;
+  --ice-aura: #02659e;
+
+  --normal: #d59cab;
+  --dark-normal: #75565c;
+  --normal-aura: #ff2b64;
+
+  --psychic: #ff1794;
+  --dark-psychic: #a42d6f;
+  --psychic-aura: #f046ff;
+
+  --rock: #903f21;
+  --dark-rock: #4a190a;
+  --rock-aura: #f89635;
+
+  --steel: #3eca9b;
+  --dark-steel: #5e7e71;
+  --steel-aura: #00fff7;
+
+  --water: #83a9fe;
+  --dark-water: #1253eb;
+  --water-aura: #6c00fa;
+
   --grass: #26d650;
   --dark-grass: #14803e;
   --grass-aura: #b5f3c8;
+
   --poison: #a068e6;
   --dark-poison:#612b8d;
-  --poison-aura:#efbdf0;
+  --poison-aura:#ef14d2;
 
   --text-color: #2f2e2e;
   --light-text-color: rgba(255, 255, 255, 0.976);
@@ -194,7 +259,7 @@ body{
   justify-self: center;
 }
 .pokemon__stat-bar{
-  width: 180px;
+  width: 170px;
   height: 8px;
   border-radius: 20px;
   background-color: var(--bars-background);
@@ -202,7 +267,7 @@ body{
 }
 
 .pokemon__stat-bar div{
-  width: 49%;
+  max-width: 190px;
   height: 100%;
   border-radius: 20px;
   background-color: var(--current);

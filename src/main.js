@@ -12,81 +12,86 @@ const colors = {
     aura: '--grass-aura',
   },
   bug: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--bug',
+    dark: '--dark-bug',
+    aura: '--bug-aura',
   },
   dark: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--dark',
+    dark: '--dark-dark',
+    aura: '--dark-aura',
   },
   dragon: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--dragon',
+    dark: '--dark-dragon',
+    aura: '--dragon-aura',
   },
   electric: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--electric',
+    dark: '--dark-electric',
+    aura: '--electric-aura',
   },
   fairy: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--fairy',
+    dark: '--dark-fairy',
+    aura: '--fairy-aura',
   },
   fighting: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--fighting',
+    dark: '--dark-fighting',
+    aura: '--fighting-aura',
   },
   fire: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--fire',
+    dark: '--dark-fire',
+    aura: '--fire-aura',
   },
   flying: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--flying',
+    dark: '--dark-flying',
+    aura: '--flying-aura',
   },
   ghost: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--ghost',
+    dark: '--dark-ghost',
+    aura: '--ghost-aura',
   },
   ground: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--ground',
+    dark: '--dark-ground',
+    aura: '--ground-aura',
   },
   ice: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--ice',
+    dark: '--dark-ice',
+    aura: '--ice-aura',
   },
   normal: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--normal',
+    dark: '--dark-normal',
+    aura: '--normal-aura',
   },
   psychic: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--psychic',
+    dark: '--dark-psychic',
+    aura: '--psychic-aura',
   },
   rock: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--rock',
+    dark: '--dark-rock',
+    aura: '--rock-aura',
   },
   steel: {
-    color: '--poison',
-    dark: '--dark-poison',
-    aura: '--poison-aura',
+    color: '--steel',
+    dark: '--dark-steel',
+    aura: '--steel-aura',
   },
   water: {
+    color: '--water',
+    dark: '--dark-water',
+    aura: '--water-aura',
+  },
+  poison: {
     color: '--poison',
     dark: '--dark-poison',
     aura: '--poison-aura',
@@ -101,17 +106,18 @@ function getData(API) {
 }
 
 function getPokeImages(sprites) {
-  return [
-    sprites['official-artwork'].front_default,
-    sprites.dream_world.front_default,
-    sprites.home.front_default,
-  ];
+  const images = [
+    sprites['official-artwork']?.front_default,
+    sprites.dream_world?.front_default,
+    sprites.home?.front_default,
+  ].filter((img) => img !== null);
+  return images;
 }
 
 function printCurrentPokemon(currentPokemon) {
   const response = getData(`${API}/${currentPokemon}`);
   response.then((data) => {
-    /* console.log(getPokeImages(data.sprites.other)); */
+    console.log(data);
     const types = data.types.map((type) => type.type.name);
     pokemonImages = getPokeImages(data.sprites.other);
     getDescription(data.species.url).then((desc) => {
@@ -137,7 +143,6 @@ function nextImg(n) {
     currentImg = pokemonImages.length - 1;
   }
   pokemonImg.src = pokemonImages[currentImg];
-  console.log(currentImg);
 }
 function formatID(id) {
   if (id / 100 >= 1) {
@@ -150,7 +155,7 @@ function formatID(id) {
 }
 function getDescription(API) {
   const data = getData(API);
-  return data.then((txt) => txt.flavor_text_entries[0].flavor_text);
+  return data.then((txt) => txt.flavor_text_entries[7].flavor_text);
 }
 function formatStat(statName) {
   switch (statName) {
@@ -177,7 +182,7 @@ function createStat({ base_stat, stat }) {
   statContainer.className = 'pokemon__stat';
   statBar.className = 'pokemon__stat-bar';
   /* statBarFilling.style.backgroundColor = color; */
-  statBarFilling.style.width = `${base_stat / 1.3}%`;
+  statBarFilling.style.width = `${base_stat / 1.5}%`;
   statBar.appendChild(statBarFilling);
   statName.innerText = formatStat(stat.name);
   statValue.innerText = base_stat;
@@ -245,8 +250,8 @@ function createPokemonLayout(
                
     </div>
     <nav class="pokemon__nav">
-      <button>Previous</button>
-      <button>Next</button>
+      <button onclick="nextPokemon(-1)">Previous</button>
+      <button onclick="nextPokemon(1)">Next</button>
     </nav>
   </article>`;
   const baseColor = `var(${colors[types[0]].color})`;
@@ -274,6 +279,16 @@ function createPokemonLayout(
   const pokeStatsContainer = document.querySelector('#pokemon-stats');
   const pokeStats = stats.map((stat) => createStat(stat));
   pokeStatsContainer.append(...pokeStats);
+}
+function nextPokemon(n) {
+  currentPokemon += n;
+  console.log(currentPokemon);
+  if (currentPokemon > 898) {
+    currentPokemon = 1;
+  } else if (currentPokemon < 1) {
+    currentPokemon = 898;
+  }
+  printCurrentPokemon(currentPokemon);
 }
 
 printCurrentPokemon(currentPokemon);
