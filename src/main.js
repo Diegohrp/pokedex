@@ -1,6 +1,5 @@
 const API = 'https://pokeapi.co/api/v2/pokemon';
 
-let currentPokemon = 1;
 let offset = 0;
 let currentImg = 0;
 let pokemonImages = [];
@@ -21,7 +20,7 @@ function getPokeImages(sprites) {
   return images;
 }
 
-function printCurrentPokemon(currentPokemon) {
+function printCurrentPokemon() {
   const response = getData(`${API}/${currentPokemon}`);
   response.then((data) => {
     /* console.log(data); */
@@ -60,7 +59,7 @@ function nextPokemon(n) {
   } else if (currentPokemon < 1) {
     currentPokemon = 898;
   }
-  printCurrentPokemon(currentPokemon);
+  printCurrentPokemon();
 }
 
 function fetchPokemons(API) {
@@ -73,9 +72,15 @@ function fetchPokemons(API) {
         const types = item.types.map((type) => type.type.name);
         const img =
           item.sprites.other['official-artwork']?.front_default;
-        createPokemonCard(item.name, types, img);
+        createPokemonCard(item.name, types, img, item.id);
       });
     });
+}
+
+function closeDetails() {
+  pokemonDetails.innerHTML = '';
+  pokemonDetails.style.display = 'none';
+  pokeList.style.display = 'grid';
 }
 
 fetchPokemons(API);

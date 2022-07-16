@@ -1,3 +1,4 @@
+let currentPokemon = 1;
 const pokemonDetails = document.querySelector('#pokemon-details');
 const pokeList = document.querySelector('#poke-list');
 const colors = {
@@ -146,7 +147,6 @@ function createStat({ base_stat, stat }) {
   const statBarFilling = document.createElement('div');
   statContainer.className = 'pokemon__stat';
   statBar.className = 'pokemon__stat-bar';
-  /* statBarFilling.style.backgroundColor = color; */
   statBarFilling.style.width = `${base_stat / 1.5}%`;
   statBar.appendChild(statBarFilling);
   statName.innerText = formatStat(stat.name);
@@ -167,10 +167,12 @@ function createPokemonLayout(
   weight,
   stats
 ) {
+  pokeList.style.display = 'none';
+  pokemonDetails.style.display = 'grid';
   pokemonDetails.innerHTML = `
   <article class="pokemon">
     <div class="pokemon__info" id="pokemon-info">
-      <button class="pokemon-section__back">
+      <button class="pokemon-section__back" onclick="closeDetails()">
         <i class="fa-solid fa-arrow-left"></i>
       </button>
       <img
@@ -232,7 +234,7 @@ function createPokemonLayout(
   pokeStatsContainer.append(...pokeStats);
 }
 
-function createPokemonCard(name, types, img) {
+function createPokemonCard(name, types, img, id) {
   const container = document.createElement('article');
   const baseColor = `var(${colors[types[0]].color})`;
   const darkColor = `var(${colors[types[0]].dark})`;
@@ -261,6 +263,11 @@ function createPokemonCard(name, types, img) {
   button.innerText = 'Details';
   button.style.border = `3px solid ${darkColor}`;
   button.style.color = darkColor;
+  button.onclick = () => {
+    currentPokemon = id;
+    printCurrentPokemon();
+  };
+
   types.map((type) => {
     const span = document.createElement('span');
     span.innerText = type.charAt(0).toUpperCase() + type.slice(1);

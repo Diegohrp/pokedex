@@ -105,9 +105,9 @@ body{
 
 .pokemon-section__back{
   position: absolute;
-  width: 40px;
-  height: 40px;
-  font-size: 2.5rem;
+  width: 50px;
+  height: 50px;
+  font-size: 3rem;
   top: 0;
   left: 0;
   z-index: 1;
@@ -363,8 +363,8 @@ body{
   cursor: pointer;
 }
 .pokemon-card__go-details div button:hover{
-  background-color: var(--current-dark);
-  color: var(--current) !important;
+  background-color: transparent;
+  color: var(--light-text-color) !important;
 }
 
 .pokemon-card .pokemon-card__go-details img{
@@ -390,7 +390,6 @@ body{
 @media (min-width:1000px) {
   .pokemon-section{
     height: 100vh;
-    display: grid;
   }
   .pokemon{
     display: grid;
