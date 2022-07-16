@@ -78,7 +78,7 @@
   --light-text-color: rgba(255, 255, 255, 0.976);
   --bars-background: #a3a3a3;
    /*Current colors, these will change*/
-  --current: transparent;
+  --current: white;
   --current-dark: transparent;
   --current-aura: transparent;
 }
@@ -296,26 +296,84 @@ body{
   background-color: var(--current-dark);
 }
 
-/* /*Estas clases corresponden al article
-.grass .pokemon__info{
-  background-color: red;
+/*Main*/
+.pokemon-list{
+  width:100vw ;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+  gap: 20px;
+  place-items: center;
+  color: var(--light-text-color);
+  margin-top: 50px;
+  padding: 20px 40px 20px 20px;
+  
 }
 
-.grass .pokemon__info span{
-  background-color: var(--dark-grass);
+.pokemon-card{
+  width: 300px;
+  height: 180px;
+  background-color: var(--current);
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+  box-shadow: 7px 7px 8px 0px rgba(0,0,0,0.75);
+  
+}
+.pokemon-card img:first-child{
+  width: 120px;
+  position: absolute;
+  left: calc(60% - 10px);
+  top: calc(30% - 50px);
+  opacity: 0.2;
+}
+.pokemon-card h1{
+  font-family: var(--titles-font);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  
+}
+.pokemon-card .pokemon-card__go-details{
+  width: 100%;
+  display: flex;
+}
+.pokemon-card .pokemon-card__go-details div{
+  display: flex;
+  flex-direction: column;
+}
+.pokemon-card__go-details div span{
+  width: 90px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  border: 2px solid var(--light-text-color);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  background-color: var(--current-dark); 
+}
+.pokemon-card__go-details div button{
+  height: 27px;
+  font-family: var(--text-font);
+  font-size: 1.6rem;
+  border-radius: 20px;
+  border: 3px solid var(--current-dark);
+  background-color: var(--light-text-color);
+  color: var(--text-color);
+  cursor: pointer;
+}
+.pokemon-card__go-details div button:hover{
+  background-color: var(--current-dark);
+  color: var(--current) !important;
 }
 
-.grass .pokemon__stat .pokemon__stat-bar div{
-  background-color: red;
+.pokemon-card .pokemon-card__go-details img{
+  width: 120px;
+  height: 120px;
+  z-index: 1;
+  filter: drop-shadow(0 -6mm 4mm var(--current-aura))
 }
 
-.grass .pokemon__nav button{
-  background-color: red;
-}
-
-.grass .pokemon__nav button:hover{
-  background-color: purple;
-} */
 
 /* Tablet */
 @media (min-height:1000px){
