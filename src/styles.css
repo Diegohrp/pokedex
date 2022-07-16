@@ -129,6 +129,7 @@ body{
   flex-direction: column;
   align-items: center;
   position: relative;
+  overflow-x: hidden;
 }
 
 .pokemon__info{
@@ -174,8 +175,8 @@ body{
 }
 
 .pokemon__info img{
-  width: 250px;
-  height: 250px;
+  width: 240px;
+  height: 240px;
   z-index: 1;
   filter: drop-shadow(0 -6mm 4mm var(--current-aura));
 }
