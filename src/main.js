@@ -8,7 +8,7 @@ function getData(API) {
   return fetch(API)
     .then((response) => response.json())
     .then((data) => data)
-    .catch((error) => console.log(error));
+    .catch((error) => error);
 }
 
 function getPokeImages(sprites) {
@@ -20,25 +20,30 @@ function getPokeImages(sprites) {
   return images;
 }
 
-function printCurrentPokemon() {
-  const response = getData(`${API}/${currentPokemon}`);
-  response.then((data) => {
-    /* console.log(data); */
-    const types = data.types.map((type) => type.type.name);
-    pokemonImages = getPokeImages(data.sprites.other);
-    getDescription(data.species.url).then((desc) => {
-      createPokemonLayout(
-        data.id,
-        data.name,
-        pokemonImages[0],
-        types,
-        desc,
-        data.height,
-        data.weight,
-        data.stats
-      );
+function printCurrentPokemon(query) {
+  const response = getData(`${API}/${query || currentPokemon}`);
+  response
+    .then((data) => {
+      currentPokemon = data.id;
+      const types = data.types.map((type) => type.type.name);
+      pokemonImages = getPokeImages(data.sprites.other);
+      getDescription(data.species.url).then((desc) => {
+        createPokemonLayout(
+          data.id,
+          data.name,
+          pokemonImages[0],
+          types,
+          desc,
+          data.height,
+          data.weight,
+          data.stats
+        );
+      });
+    })
+    .catch((error) => {
+      /* notFound(); */
+      console.table(error);
     });
-  });
 }
 function nextImg(n) {
   const pokemonImg = document.querySelector('#pokemon-img');
@@ -62,8 +67,17 @@ function nextPokemon(n) {
   printCurrentPokemon();
 }
 
-function fetchPokemons(API) {
-  getData(`${API}?offset=${offset}&limit=15`)
+function fetchPokemons(n) {
+  offset += n;
+
+  if (offset < 0) {
+    offset = 882;
+  } else if (offset > 882) {
+    offset = 0;
+  }
+  console.log(offset);
+  pokeList.innerHTML = '';
+  getData(`${API}?offset=${offset}&limit=16`)
     .then((data) => data.results)
     .then((data) => data.map((item) => getData(item.url)))
     .then((promiseArray) => Promise.all(promiseArray))
@@ -81,7 +95,18 @@ function closeDetails() {
   pokemonDetails.innerHTML = '';
   pokemonDetails.style.display = 'none';
   pokeList.style.display = 'grid';
+  navList.style.display = 'flex';
 }
 
-fetchPokemons(API);
+function handleSearch(event) {
+  event.preventDefault();
+  const search = document.getElementById('search');
+  const query = search.value;
+  printCurrentPokemon(query);
+}
+
+form.addEventListener('submit', handleSearch);
+
+fetchPokemons(0);
+
 /* printCurrentPokemon(currentPokemon); */

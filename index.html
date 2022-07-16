@@ -22,6 +22,13 @@
     <title>Poxedex</title>
   </head>
   <body>
+    <header>
+      <h1>Pokedex</h1>
+      <form id="form">
+        <input type="text" placeholder="type an id or name" name="search" id="search">
+        <button type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+    </header>
     <main>
       <section class="pokemon-list" id="poke-list">
        <!--  <article class="pokemon-card">
@@ -40,7 +47,12 @@
             <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png" alt="pokemonImg">
           </div>
         </article> -->
+        
       </section>
+      <nav class="nex-request" id="nav-list">
+        <button onclick="fetchPokemons(-16)">Previous</button>
+        <button onclick="fetchPokemons(16)">Next</button>
+      </nav>
       <section class="pokemon-section" id="pokemon-details">
         <!-- <article class="pokemon">
           <div class="pokemon__info">
@@ -124,7 +136,15 @@
           </div> -->
         </article>
       </section>
+      <!-- <section class="modal" id="modal">
+        <article>
+          <h2>404: Not found</h2>
+          <p>We're sorry, try with another id or name.</p>
+          <button>OK</button>
+        </article>
+      </section> -->
     </main>
+    <footer></footer>
   </body>
   <script src="./src/dom.js"></script>
   <script src="./src/main.js"></script>

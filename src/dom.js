@@ -1,6 +1,9 @@
 let currentPokemon = 1;
 const pokemonDetails = document.querySelector('#pokemon-details');
 const pokeList = document.querySelector('#poke-list');
+const navList = document.querySelector('#nav-list');
+const form = document.querySelector('#form');
+
 const colors = {
   grass: {
     color: '--grass',
@@ -168,6 +171,7 @@ function createPokemonLayout(
   stats
 ) {
   pokeList.style.display = 'none';
+  navList.style.display = 'none';
   pokemonDetails.style.display = 'grid';
   pokemonDetails.innerHTML = `
   <article class="pokemon">
