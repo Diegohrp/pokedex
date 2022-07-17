@@ -121,10 +121,7 @@ function formatID(id) {
     return '#00' + id;
   }
 }
-function getDescription(API) {
-  const data = getData(API);
-  return data.then((txt) => txt.flavor_text_entries[7].flavor_text);
-}
+
 function formatStat(statName) {
   switch (statName) {
     case 'hp':

@@ -19,6 +19,16 @@ function getPokeImages(sprites) {
   ].filter((img) => img !== null);
   return images;
 }
+function getDescription(API) {
+  const data = getData(API);
+  return data
+    .then((obj) => obj.flavor_text_entries)
+    .then((arrayTxt) =>
+      arrayTxt.filter((item) => item.language.name === 'en')
+    )
+    .then((desc) => desc[7] || desc[0])
+    .then((des) => des.flavor_text);
+}
 
 function printCurrentPokemon(query) {
   const response = getData(`${API}/${query || currentPokemon}`);
@@ -57,7 +67,6 @@ function nextImg(n) {
 
 function nextPokemon(n) {
   currentPokemon += n;
-  console.log(currentPokemon);
   if (currentPokemon > 898) {
     currentPokemon = 1;
   } else if (currentPokemon < 1) {
@@ -74,7 +83,6 @@ function fetchPokemons(n) {
   } else if (offset > 882) {
     offset = 0;
   }
-  console.log(offset);
   pokeList.innerHTML = '';
   getData(`${API}?offset=${offset}&limit=16`)
     .then((data) => data.results)
@@ -93,8 +101,13 @@ function fetchPokemons(n) {
 function handleSearch(event) {
   event.preventDefault();
   const search = document.getElementById('search');
-  const query = search.value;
-  printCurrentPokemon(query.toLowerCase());
+  let query = search.value;
+  if (query > 898) {
+    query = 1000;
+  } else {
+    query = query.toLowerCase();
+  }
+  printCurrentPokemon(query);
 }
 
 form.addEventListener('submit', handleSearch);

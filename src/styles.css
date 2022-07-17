@@ -470,7 +470,7 @@ footer{
   background-color: var(--dark-fire);
   position: fixed;
   top: calc(50% - 150px);
-  left: 25%;
+  left: calc(50% - max(25%,150px));
   border-radius: 20px;
   display: flex;
   flex-direction: column;
